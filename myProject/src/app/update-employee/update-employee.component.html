@@ -1,0 +1,39 @@
+<h3>Update Employee</h3>
+<div style="width: 400px;"  class="row justify-content-md-center">
+  <form (ngSubmit)="onSubmit()">
+    <div *ngIf="employee"></div>
+    <div class="form-group">
+      <label for="name">First Name </label>
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="employee.firstName" name="firstName">
+    </div>
+    <div class="form-group">
+      <label for="name">Last Name</label>
+      <input type="text" class="form-control" id="lastName" required [(ngModel)]="employee.lastName" name="lastName">
+    </div>
+    <div class="form-group">
+      <label for="name">Salary</label>
+      <input type="text" class="form-control" id="salary" required [(ngModel)]="employee.salary" name="salary">
+    </div>  
+    <div class="form-group">
+      <label for="name">Phone</label>
+      <input type="text" class="form-control" id="phone" required [(ngModel)]="employee.phone" name="phone">
+    </div>
+    <div class="form-group">
+      <label for="department">Department</label>
+      <select name="department.id" class="form-control">
+        <option [ngValue]="null">Choose your profile</option>
+        <option value="{{department.id}}" *ngFor="let department of departments" 
+          [selected]="department.id==employee.department.id">
+          {{department.name}}</option>
+      </select>
+    </div>      
+    <div class="form-group">
+      <label for="manager">Manager</label>
+      <select [(ngModel)]="employee.manager" name="manager.id" class="form-control">
+        <option *ngFor="let manager of managers" value="{{ manager.id}}"
+        [selected]="manager.id">{{ manager.firstName }}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,38 @@
+<div class="col-md-6">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th> #ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone</th>
+        <th>Salary</th>      
+        <th>Department</th>
+        <th>Manager</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees | async">      
+          <td>{{employee.id}}</td>
+          <td>{{employee.firstName}}</td>
+          <td>{{employee.lastName}}</td>
+          <td>{{employee.phone}}</td>
+          <td>{{employee.salary}}</td>
+          <td  *ngIf="employee.department !=null else elseBlock">
+            {{employee.department.name}}            
+          </td>
+          <ng-template #elseBlock><td></td></ng-template>
+          <td  *ngIf="employee.manager !=null else elseBlock">
+            {{employee.manager.firstName}}            
+          </td>
+          <ng-template #elseBlock><td>Manager</td></ng-template>        
+          <td>
+            <button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>
+            <button (click)="updateEmployee(employee.id)" class="btn btn-info" style="margin-left: 10px">Edit</button>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+  
